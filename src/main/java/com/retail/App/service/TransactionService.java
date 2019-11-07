@@ -17,7 +17,7 @@ public class TransactionService {
         return transactionRepository.findAll();
     }
 
-    public List<Transaction> findbyAmount(double amount) {
-        return transactionRepository.findByAmount(amount);
-    }
+//    public List<Transaction> findbyAmount(double amount) {
+//        return transactionRepository.findByAmount(amount);
+//    }
 }
