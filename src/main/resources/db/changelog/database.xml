@@ -11,58 +11,11 @@
 
     <changeSet id="01" author="tushar">
 
-<!--        <dropTable cascadeConstraints="true"-->
-<!--                   schemaName="public"-->
-<!--                   tableName="transactions"/>-->
-
-<!--        <dropTable cascadeConstraints="true"-->
-<!--                   schemaName="public"-->
-<!--                   tableName="customer"/>-->
-
-<!--        <dropTable cascadeConstraints="true"-->
-<!--                   schemaName="public"-->
-<!--                   tableName="product"/>-->
-
-        <createTable tableName="customer"
-                     remarks="Customer Data">
-            <column name="cust_id" type="int">
-                <constraints nullable="false" unique="true" primaryKey="true"/>
-            </column>
-            <column name="name" type="varchar(255)">
-                <constraints nullable="false" unique="false"/>
-            </column>
-        </createTable>
-        <createTable tableName="product"
-                     remarks="A table to contain all the products">
-            <column name="pid" type="varchar(255)">
-                <constraints nullable="false" primaryKey="true"/>
-            </column>
-            <column name="name" type="varchar(100)">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-        <createTable tableName="transactions"
-                     remarks="A table to contain all the transactions">
-            <column name="tid" type="int">
-                <constraints nullable="false" primaryKey="true"/>
-            </column>
-            <column name="cust_id" type="int">
-                <constraints nullable="false"/>
-            </column>
-            <column name="date" type="timestamp">
-                <constraints nullable="false" />
-            </column>
-            <column name="amount" type="decimal">
-                <constraints nullable="false"/>
-            </column>
-
-        </createTable>
-
-        <addForeignKeyConstraint baseTableName="transactions" baseColumnNames="cust_id"
-                                 constraintName="cust_id"
-                                 referencedTableName="customer" referencedColumnNames="cust_id"/>
+        <addForeignKeyConstraint baseTableName="transaction" baseColumnNames="customer_id"
+                                 constraintName="customer_id"
+                                 referencedTableName="customer" referencedColumnNames="id"/>
         <insert tableName="customer">
-            <column name="cust_id" valueNumeric="1"/>
+            <column name="id" valueNumeric="1"/>
             <column name="name" value="testuser"/>
         </insert>
     </changeSet>

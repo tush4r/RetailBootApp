@@ -7,19 +7,19 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "Transactions")
-public class Transactions {
+@Table(name = "Transaction")
+public class Transaction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int tid;
+    private Integer id;
 
     @ManyToOne
     @NotNull
-    @JoinColumn(name = "cust_id")
     private Customer customer;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -31,8 +31,8 @@ public class Transactions {
 
     @ManyToMany
     @JoinTable(
-            name = "TransProduct",
-            joinColumns = @JoinColumn(name = "tid"),
-            inverseJoinColumns = @JoinColumn(name = "pid"))
-    private List<Product> products;
+            name = "transaction_product",
+            joinColumns = @JoinColumn(name = "transaction_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id"))
+    private Set<Product> products;
 }

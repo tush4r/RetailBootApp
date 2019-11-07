@@ -6,18 +6,20 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int cust_id;
+    private Integer id;
 
     @NotNull
     private String name;
 
-    @OneToMany(mappedBy = "tid", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "transaction_id")
     @NotNull
-    private List<Transactions> transactions;
+    private Set<Transaction> transactions;
 }
