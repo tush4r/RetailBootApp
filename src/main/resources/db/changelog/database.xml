@@ -11,17 +11,17 @@
 
     <changeSet id="01" author="tushar">
 
-        <dropTable cascadeConstraints="true"
-                   schemaName="public"
-                   tableName="transactions"/>
+<!--        <dropTable cascadeConstraints="true"-->
+<!--                   schemaName="public"-->
+<!--                   tableName="transactions"/>-->
 
-        <dropTable cascadeConstraints="true"
-                   schemaName="public"
-                   tableName="customer"/>
+<!--        <dropTable cascadeConstraints="true"-->
+<!--                   schemaName="public"-->
+<!--                   tableName="customer"/>-->
 
-        <dropTable cascadeConstraints="true"
-                   schemaName="public"
-                   tableName="product"/>
+<!--        <dropTable cascadeConstraints="true"-->
+<!--                   schemaName="public"-->
+<!--                   tableName="product"/>-->
 
         <createTable tableName="customer"
                      remarks="Customer Data">
