@@ -18,8 +18,19 @@ public class Product {
     @NotNull
     private String name;
 
+    @NotNull
+    private double amount;
+
     @ManyToMany(mappedBy = "products")
     Set<Transaction> transactions;
+
+    public Product() {}
+
+    public Product(double amount, Integer id, String name) {
+        this.amount = amount;
+        this.id = id;
+        this.name = name;
+    }
 
     public Integer getId() {
         return id;
@@ -36,5 +47,9 @@ public class Product {
     public void setName(String name) {
         this.name = name;
     }
+
+    public double getAmount() { return amount; }
+
+    public void setAmount(double amount) { this.amount = amount; }
 }
 

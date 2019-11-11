@@ -11,16 +11,6 @@ import java.util.List;
 
 @Repository
 public interface TransactionRepository extends JpaRepository <Transaction, Integer> {
-
-
-//    @Query("SELECT customer_id, date FROM transaction t where t.amount = :amount ORDER BY date")
-//    public List<Transaction> findByAmount(@Param("amount") double amount);
-
-//    @Query("SELECT customer_id, date FROM transaction t where t.date = :date ORDER BY date")
-//    public List<Transaction> findByDate(@Param("date") Date time);
-//
-//    @Query("SELECT customer_id, date FROM transaction t where t.product_id = :amount ORDER BY date ")
-//    public List<Transaction> findByProductId(int id);
-
-    //public final static String product_ordered ="Select p from Product p Join p.orderDetail od Where od.id = :id";
+    @Query("SELECT t FROM Transaction t WHERE t.amount > :amount ORDER BY amount DESC")
+    public List<Transaction> findByAmount(@Param("amount") double amount);
 }

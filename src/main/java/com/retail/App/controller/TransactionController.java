@@ -1,37 +1,37 @@
 package com.retail.App.controller;
 
 import com.retail.App.model.Transaction;
-import com.retail.App.repository.TransactionRepository;
 import com.retail.App.service.TransactionService;
+import com.retail.App.service.TransactionServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @RestController
 @RequestMapping("/transaction")
-@Configurable
 public class TransactionController {
-    @Autowired TransactionService transactionService;
+    @Autowired
+    @Qualifier("transactionService")
+    TransactionService transactionService;
 
     @GetMapping(path = "/ping")
     public String ping() {
         return "I am alive";
     }
 
+    @RequestMapping(value = "/{amount}", method = GET)
+    @ResponseBody
+    public List<Transaction> method(@PathVariable("amount") double amount) {
+        return transactionService.findbyAmount(amount);
+    }
+
     @GetMapping
-    public List<Transaction> getDogs() throws Exception{
-        try {
-            return transactionService.list();
-        } catch (Exception e) {
-            System.out.println("no");
-            return new ArrayList<>();
-        }
+    public List<Transaction> getTransaction() {
+        return transactionService.list();
     }
 }
 
